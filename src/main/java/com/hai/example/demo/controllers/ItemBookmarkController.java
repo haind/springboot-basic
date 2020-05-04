@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ItemBookmarkController {
 	@GetMapping("/list-item")
 	public List listItem() {
-		var obj = new ItemBookmark();
+		ItemBookmark obj = new ItemBookmark();
 		obj.setItemId(1);
 		obj.setItemName("abcd");
 
@@ -23,7 +23,7 @@ public class ItemBookmarkController {
 
 		list.add(obj);
 
-		var obj2 = new ItemBookmark();
+		ItemBookmark obj2 = new ItemBookmark();
 		obj2.setItemId(1);
 		obj2.setItemName("abcd");
 		list.add(obj2);
