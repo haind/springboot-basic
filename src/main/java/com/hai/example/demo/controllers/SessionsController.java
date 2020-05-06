@@ -69,10 +69,10 @@ public class SessionsController {
 		return ResponseEntity.status(HttpStatus.OK).body(new ViewSessionGet("Ok", "List sessions", (Iterable) list));
 	}
 
-	@GetMapping("/sessions")
-	public ResponseEntity<ViewSessionGet> getAllSessions() {
-		return ResponseEntity.status(HttpStatus.OK).body(new ViewSessionGet("Ok", "List sessions", sessionMap));
-	}
+	// @GetMapping("/sessions")
+	// public ResponseEntity<ViewSessionGet> getAllSessions() {
+	// 	// return ResponseEntity.status(HttpStatus.OK).body(new ViewSessionGet("Ok", "List sessions", sessionMap));
+	// }
 
 	@GetMapping("/session/{id}")
 	public ResponseEntity<Session> getSession(@PathVariable String id) {
