@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
+import javax.validation.Valid;
+
 import com.hai.example.demo.model.User;
 import com.hai.example.demo.repository.UserRepository;
 
@@ -34,7 +36,7 @@ public class UserController {
     private UserRepository userRepository;
 
     @PostMapping("/add") // Map ONLY POST Requests
-    public @ResponseBody String addNewUser(@RequestBody User u) {
+    public @ResponseBody String addNewUser(@Valid @RequestBody User u) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
 

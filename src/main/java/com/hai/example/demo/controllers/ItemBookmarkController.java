@@ -8,7 +8,9 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hai.example.demo.model.ItemBookmark;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +21,7 @@ import reactor.core.publisher.Mono;
 @RestController
 public class ItemBookmarkController {
 	@GetMapping("/list-item")
-	public List listItem() {
+	public ResponseEntity listItem() {
 		ItemBookmark obj = new ItemBookmark();
 		obj.setItemId(1);
 		obj.setItemName("abcd");
@@ -33,7 +35,7 @@ public class ItemBookmarkController {
 		obj2.setItemName("abcd");
 		list.add(obj2);
 
-		return list;
+		return ResponseEntity.status(HttpStatus.OK).body(list);
 	}
 
 	@GetMapping("/hashmap")

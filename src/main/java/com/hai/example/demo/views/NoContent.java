@@ -1,4 +1,4 @@
-package com.hai.example.demo.model;
+package com.hai.example.demo.views;
 
 import java.io.Serializable;
 
@@ -9,8 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @NoArgsConstructor
-public class Session implements Serializable{
-	private long id;
-	private String uuid;
-	private String content;
+public class NoContent implements Serializable {
+    private String status;
+    private String message;
 }

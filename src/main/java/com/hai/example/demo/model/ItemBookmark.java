@@ -17,12 +17,12 @@ public class ItemBookmark implements Serializable {
 
     // public List getItemList()
     // {
-    //     List<Object> list = new ArrayList<Object>();
+    // List<Object> list = new ArrayList<Object>();
 
-	// 	list.add(new ItemBookmark(999, "Samsung S7"));
-	// 	list.add(new ItemBookmark(888, "Samsung S8"));
-    //     list.add(new ItemBookmark(777, "Samsung S6"));
-        
-    //     return list;
+    // list.add(new ItemBookmark(999, "Samsung S7"));
+    // list.add(new ItemBookmark(888, "Samsung S8"));
+    // list.add(new ItemBookmark(777, "Samsung S6"));
+
+    // return list;
     // }
 }
