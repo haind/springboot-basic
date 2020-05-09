@@ -2,30 +2,28 @@ package com.hai.example.demo.controllers;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.Optional;
-import java.util.concurrent.TimeUnit;
 
 import javax.validation.Valid;
 
+import com.hai.example.demo.dto.UserDTO;
+import com.hai.example.demo.mapper.UserMapper;
 import com.hai.example.demo.model.User;
 import com.hai.example.demo.repository.UserRepository;
 import com.hai.example.demo.views.ViewSessionGet;
 
+import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -60,19 +58,30 @@ public class UserController {
     @GetMapping("/all")
     public ResponseEntity<ViewSessionGet> getAllUsers(
         @RequestParam(defaultValue = "0") int page,
-        @RequestParam(defaultValue = "email") String sort) {
+        @RequestParam(defaultValue = "email") String sort)
+    {
+        UserMapper mapper = Mappers.getMapper(UserMapper.class);
+
         Pageable paging = PageRequest.of(page, 2, Sort.by(sort));
         Iterable result = userRepository.findAll(paging);
 
+        //Input: iterable from repository
+        Iterable resultDTO = mapper.userModelToUserView(result);
+
+
         return ResponseEntity
             .status(HttpStatus.OK)
-            .body(new ViewSessionGet("Ok", "List sessions", result));
+            .body(new ViewSessionGet("Ok", "List sessions", resultDTO));
     }
 
     @GetMapping("/{id}")
-    public @ResponseBody String getUserID(@PathVariable int id) {
-        // This returns a JSON or XML with the users
-        return userRepository.findById(id).toString();
+    public @ResponseBody
+    UserDTO getUserID(@PathVariable int id) {
+        UserMapper mapper = Mappers.getMapper(UserMapper.class);
+
+        User user;
+        user = userRepository.findById(id);
+        return mapper.userModelToUserView(user);
     }
 
     @GetMapping("/user-name/{userName}")

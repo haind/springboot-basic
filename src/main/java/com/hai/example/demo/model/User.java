@@ -12,7 +12,13 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@AllArgsConstructor
+@Data
+@NoArgsConstructor
 @JsonPropertyOrder({ "email", "name" })
 @Entity // This tells Hibernate to make a table out of this class
 public class User {
@@ -23,37 +29,12 @@ public class User {
   @NotNull(message = "Name cannot be null")
   private String name;
 
-  @Size(min = 3, max = 8, message = "Sai email length")
+  @Size(min = 3, max = 18, message = "Sai email length")
   @Email(message = "Sai email format")
   private String email;
 
   // private ZoneId zone;
-
   // private ZonedDateTime dt;
-
-  public Integer getId() {
-    return id;
-  }
-
-  public void setId(Integer id) {
-    this.id = id;
-  }
-
-  public String getName() {
-    return "Ten: " + name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public String getEmail() {
-    return email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
-  }
 
   @Override
   public String toString() {

@@ -1,16 +1,17 @@
 package com.hai.example.demo.model;
 
-import java.io.Serializable;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 @AllArgsConstructor
 @Data
 @NoArgsConstructor
-public class Session implements Serializable{
-	private long id;
-	private String uuid;
-	private String content;
+public class Session  implements Serializable {
+	public long id;
+	public String uuid;
+	public String content;
 }
