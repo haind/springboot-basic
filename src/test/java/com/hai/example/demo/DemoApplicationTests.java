@@ -19,7 +19,9 @@ class DemoApplicationTests {
 		String[] names = new String[]{"a","b","c"};
 		Flux<String> namesFlux = Flux.fromArray(names);
 
-		System.out.println(names);
+		System.out.println("=================================");
+		System.out.println(names.length);
+		System.out.println("=================================");
 
 		StepVerifier.create(namesFlux)
 		.expectNext("a","b" );

@@ -73,7 +73,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>mapstruct</finalName>
+		<finalName>springboot-basic</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
