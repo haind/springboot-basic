@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicLong;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hai.example.demo.dto.SessionDTO;
 import com.hai.example.demo.mapper.SessionMapper;
 import com.hai.example.demo.model.Session;
@@ -149,5 +151,23 @@ public class SessionsController {
         sessionMap.put(id, session);
 
         return session;
+    }
+
+    @GetMapping("/session/json")
+    public void json() throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+
+        //Create string of JSON array
+        String strJson = "[{\"id\":0,\"uuid\":\"fd03c8b9-ce78-4a96-8fb8-2e77da63bb82\",\"content\":\"Hello, abc key:5!\"},{\"id\":0,\"uuid\":\"d133058f-8985-4032-becc-98efd1ac3900\",\"content\":\"Hello, abc key:6!\"}]";
+        //Read JSON and convert into Session Array
+        List<Session> sessions = Arrays.asList(mapper.readValue(strJson, Session[].class));
+        System.out.println(sessions);
+        System.out.println(Arrays.asList(sessions));
+
+        //Convert DTO from Session Array
+        SessionMapper mapper1 = Mappers.getMapper(SessionMapper.class);
+        List<SessionDTO> sessionDTOS = mapper1.sessionToSessionDTO(sessions);
+        System.out.println(sessionDTOS);
+
     }
 }
