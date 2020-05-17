@@ -23,16 +23,16 @@ public class ItemBookmarkController {
 	@GetMapping("/list-item")
 	public ResponseEntity listItem() {
 		ItemBookmark obj = new ItemBookmark();
-		obj.setItemId(1);
-		obj.setItemName("abcd");
+		obj.setItemId(1L);
+		obj.setItemUrl("abcd");
 
 		List<Object> list = new ArrayList<Object>();
 
 		list.add(obj);
 
 		ItemBookmark obj2 = new ItemBookmark();
-		obj2.setItemId(1);
-		obj2.setItemName("abcd");
+		obj2.setItemId(1L);
+		obj2.setItemUrl("abcd");
 		list.add(obj2);
 
 		return ResponseEntity.status(HttpStatus.OK).body(list);
