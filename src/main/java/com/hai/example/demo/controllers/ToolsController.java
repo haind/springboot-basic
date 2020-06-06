@@ -25,21 +25,21 @@ public class ToolsController {
 
     @GetMapping("csv")
     public void cvs() {
-        List<List<String>> records = new ArrayList<>();
+        List<List<String>> lines = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(CSV))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(COMMA_DELIMITER);
-                records.add(Arrays.asList(values));
+                lines.add(Arrays.asList(values));
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(records.size());
+        System.out.println(lines.size());
 
-        parseRedis(records);
+        parseRedis(lines);
 
         System.out.println("CSV Finished!");
     }
