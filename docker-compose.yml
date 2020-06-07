@@ -1,13 +1,27 @@
 version: '3'
 
 services:
-  spring-mysql:
-    image: mysql:5.7
-    container_name: spring-mysql
-    ports:
-      - "3307:3306"
-    environment:
-      - MYSQL_ROOT_PASSWORD=root
+#  spring-demo-mysql:
+#    image: mysql:5.7
+#    container_name: spring-mysql
+#    ports:
+#      - "3307:3306"
+#    environment:
+#      - MYSQL_ROOT_PASSWORD=root
+#    volumes:
+#      - bf9efc2896d114cde6d3e29a0c142422dcdf3b88a802b896bd488a351857f3e2
+
+  spring-demo-redis:
+    image: redis:5.0.5
     volumes:
-      - bf9efc2896d114cde6d3e29a0c142422dcdf3b88a802b896bd488a351857f3e2
+      - ./logs/data:/data
+    ports:
+      - "7000:6379"
+
+  spring-demo-redisinsight:
+    image: redislabs/redisinsight:1.3.0
+    volumes:
+      - ./logs/redisinsight:/db
     restart: always
+    ports:
+      - "8004:8001"
